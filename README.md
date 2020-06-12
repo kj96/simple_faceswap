@@ -1,24 +1,24 @@
 # simple_faceswap
-使用opencv-python和dlib实现的简单换脸程序
+Simple face-changing program using opencv-python and dlib
 
-## 准备 ##
-* pip安装opencv-python、dlib
-* 下载dlib人脸形状检测器模型数据：[shape_predictor_68_face_landmarks.dat.bz2](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2)，并解压在models文件夹下
+## Preparation ##
+* pip install opencv-python, dlib
+* Download dlib face shape detector model data：[shape_predictor_68_face_landmarks.dat.bz2](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2)，And unzip it under the models folder
 
-## 实现步骤 ##
-1. 使用dlib的shape_predictor_68_face_landmarks.dat模型获取人脸图片im1和摄像头图片im2的68个人脸特征点。
-2. 根据上一步获得的特征点得到两张图片的人脸掩模im1_mask和im2_mask。
-3. 利用68个特征点中的3个特征点，对人脸图片im1进行仿射变换使其脸部对准摄像头图片中的脸部，得到图片affine_im1。
-4. 对人脸图片的掩模im1_mask也进行相同的仿射变换得到affine_im1_mask。
-5. 对掩模im2_mask和掩模affine_im1_mask的掩盖部分取并集得到union_mask。
-6. 利用opencv里的seamlessClone函数对仿射变换后的affine_im1和摄像头图片im2进行泊松融合，掩模为union_mask，得到融合后的图像seamless_im。
+## Implementation steps ##
+1. Use the shape_predictor_68_face_landmarks.dat model of dlib to obtain 68 face feature points of face image im1 and camera image im2.
+2. According to the feature points obtained in the previous step, the face masks im1_mask and im2_mask of the two pictures are obtained.
+3. Using 3 feature points out of 68 feature points, an affine transformation is performed on the face image im1 to align its face with the face in the camera picture to obtain the picture affine_im1.
+4. The affine_im1_mask is also obtained by performing the same affine transformation on the im1_mask of the face image.
+5. Union the mask im2_mask and mask affect_im1_mask to get union_mask.
+6. The seamlessClone function in opencv is used to perform Poisson fusion of the affine_im1 and camera image im2 after the affine transformation, and the mask is union_mask to obtain the fusion image seamless_im.
 
-## 换脸效果 ##
-* 周杰伦的帅气照：
+## Change face effect ##
+* Jay Chou's handsome photo:
 
 ![JayChou.png](./faces/JayChou.png)
 
-* 利用杰伦的脸作为替换的脸的换脸效果：
+* The face change effect using Jaylen’s face as the replacement face:
 
 ![seamless_im.png](./faces/seamless_im.png)
 
